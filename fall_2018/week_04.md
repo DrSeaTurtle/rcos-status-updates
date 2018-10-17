@@ -16,5 +16,6 @@
 
 ## Notes
 
->will finish up exhibition file on a few concepts in JS and setting up a basic server on my own computer using just Node.js and commit it later tonight
+>will finish up exhibition file on a few concepts in JS and setting up a basic server on my own computer using just Node.js and commit it later tonight 
+>edit: later tonight bled over into later the next day
 
