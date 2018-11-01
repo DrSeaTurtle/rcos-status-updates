@@ -1,0 +1,118 @@
+In the begining, there was index.js...
+
+index.js    
+//everything starts here
+    grabs actual server program from ./server folder
+        starts at ./server/index.js
+    grabs the port and hostname from ./config folder
+        looks in ./config/default.json
+
+    has the server listen for request to the hostname and port
+    prints to console that server is listening
+
+./config/default.json
+//holds metadata
+    json object with a bunch of data about LATE
+
+
+
+
+
+
+./server/index.js
+//entry file for back end processes
+    loads and applies a menagerie of koa-ecosystem modules and other dependencies
+    
+    makes a koa object to handle request and serve as the base object for the entire application
+
+    use Koa-parser to given an easy to use form to incoming client requests
+
+    use Koa-respond for easy methods to respond to client request
+        200:good, 404:notfound, 500:server error, etc
+        all paired with the appropriate custom message
+
+    add the mongo database to the context of the app so its cntents are availible on each request
+
+    use Koa-session for cookie based sessions
+        using default key:'koa:sess' that last 1 day
+
+    use Koa-Helmet for better security 
+        at this point just uses https connection
+        kind of a general bandage against general skullduggery, delibrate or not
+    
+    use koa-logger for self explantory reasons
+        when LATE is on fire, we at least get a clue
+    
+    use koa-static for serving static files in responses
+        ./client/public is used as the root
+        this folder is where assets are taken
+        LATE will become a SPA soon so this may become obsolete
+    
+    use Koa-views to render pug files
+        uses the native path module to pass the views folder(outside of server) into the views object
+        not sure why using the normal syntax isnt valid and the path module had to be bust out for this//CHECK//
+            views in particular probably gets huffy if it isnt passed in this format
+
+    
+    "main" function
+        sets basedirectory to views
+            
+        sets the moment to the moment object
+            for time
+        
+        sets the NODE_ENV system var to 'production if it hasnt been set
+
+        injects session flash object, creates on if it doesnt exist
+            presumably the object to handle that yellow text box disclaimer that LATE could just keel over
+            is intanstiated with that warning, given to ctx.state and then cleared
+        
+        passes ctx.state the url so it knows that path
+
+        sets the ctx.state.loggedIn variable to true if the user is cas authenticated
+
+        if ctx.state.loggedIn is true then ctx.state is updated with the users name and user object from the session and database
+
+        error handling
+            if the page doesnt exist throw 404
+            else just give a 500 error and log it
+        
+    use Koa-router to handle routing from the url
+        loads the different routes from ./server/routes
+
+
+
+
+
+
+./db/index.js
+//handles the connection and loading of the database schemas
+    creates  a custom connection url based on the config file
+        grabs user name,pass as well as db host,port and db
+        all of these are currently generic
+    
+    makes connection with database at this url
+
+    loads the schemas from the ./db/schemas folder into an object called models
+        done synchronously, we dont want any ridiculousless from async messing this up
+    log that the schemas have been loaded
+
+    export the connection and models
+
+./db/schemas/student.js
+//representation of a single student in the database
+    includes authentication data as well as data to represent a students class data
+    has an array of assignment schemas
+
+./db/schemas/assignment.js
+//representation of a single assignment in the database
+    includes a reference to a particular student
+    holds the name, description, due date, priority, etc of a particular assignment
+        everything needed to describe what an assignment is and how important it is
+    also includes a course CRN to group assignments by class
+    includes an array of refrences to block schemas
+
+./db/schemas/block.js
+//representation of a single block of time for an assignment in a database
+    includes a reference to a particular assignment
+    contains the start and end time of a block of time
+    also tracks if that block was fufilled by the user

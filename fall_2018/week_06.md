@@ -1,22 +1,21 @@
 ## Last Week's Accomplishments
+>crawled across the back-end implimentation of LATE and developed a refrence .txt file to build my understanding
 
-> In this section, you can write about what you accomplished in the previous week.
+>I was not able to actualy commit code to the repository for the allocating alorithm
+> > LATE is not at the point where the algorithm could recieve or display its results
 
-> Examples:
-> Bug fixes, Features added, Links to Issues, Links to Pull-Requests, Lightning Talks, Bonus Sessions
+>but, I posted a page to the wiki detailing the algorithm and complexity therof to be used in late as well as specific modifications to the algorithm pertaining to LATE; priority, finite containers, and due dates
+> > this is to both get my thoughts down and out to everyone about the details of LATE's core behavior
 
 ## This Week's Plan
 
-> In this section, you can write about what you have planned for next week.
-
-> Examples: New Bugs to be fixed, Design choices
+> research and develop prototypes for the notification system or tackle the bug where an error message appears in production mode
 
 ## Anything Blocking?
 
-> In this section, you can write about any blockers that you are having trouble in the project.
-
-> Examples: Confusion on how to approach a problem, Limited experience with a specific technology
+> focus has been shifting to the S.P.A overhaul
+>unsure of what exactly I need/can to do
 
 ## Notes
 
-> This is an optional section for any sort of information that does not fall under any of the other categories.
+> not much, im starting to build steam with familiarity with late
