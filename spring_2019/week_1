@@ -1,0 +1,9 @@
+>Things done last week
+  I reviewd the changes made to LATE's design and 
+  realised that the core of the algorithm used for allocation didnt accomodate deadlines at all
+>Things I will be doing this week
+  rewriting the abstract portion of the algorithm to represent and respect an asssignmenst deadline
+  This also gives me an excuse to make a fresh pass at it, since exception handling was also non-existant
+>Blockers
+  I have a calcII test  on wendesday and my focs and econ both have a test next week, as well as Comporg's HW being due that week as well
+ 
